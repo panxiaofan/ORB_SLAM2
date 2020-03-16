@@ -1,0 +1,27 @@
+version: '2.3'
+services:
+  orbslam2:
+    image: yubaoliu/orbslam:melodic
+    build:
+        context: .
+        args:
+            cuda_version: 10.2
+            cudnn_version: 7
+            ubuntu_version: 18.04
+    container_name: orbslam2
+    runtime: nvidia
+    command: >
+        - lxterminal
+    environment:
+        - ROS_HOSTNAME=orbslam2
+        - ROS_MASTER_URI=http://orbslam2:11311
+        - DISPLAY
+        - QT_X11_NO_MITSHM=1
+    volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix:rw
+        - ../:/root/catkin_ws/src/ORB_SLAM2
+        - /home/yubao/data/Dataset:/root/Dataset
+        - orbslam2:/root
+
+volumes:
+    orbslam2:
