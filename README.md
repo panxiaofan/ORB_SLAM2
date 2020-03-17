@@ -5,12 +5,7 @@
 - Eigen 3.3.4
 - ROS melodic
 - docker2
-- boost: 1.65
-## Local machine
-- Ubuntu 16.04
-- OpenCV 3.3.1
-- Eigen 
-- ROS kinetic
+- Pangolin
 - boost: 1.58
 
 # RUN Docker
@@ -40,6 +35,26 @@ export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/root/catkin_ws/src/ORB_SLAM2/Exampl
 ./buid_ros.sh
 ```
 
+# Manually Install
+## ubuntu dependency
+```sh
+sudo apt install libxkbcommon-dev
+sudo apt install libglew-dev
+```
+## Pangolin
+```sh
+git clone https://github.com/stevenlovegrove/Pangolin.git
+cd Pangolin
+mkdir build
+cd build
+cmake ..
+make -j
+
+export Pangolin_DIR=/home/yubao/data/software/Pangolin/build/src
+```
+
+
+
 # Switch from docker to host development
 You may see permission denied if you build your system in docker, because docker is runing using root. You should change execute privilege or change folder owner using ``chmod`` or ``chown``.
 E.g.,
@@ -58,6 +73,12 @@ dpkg -l | grep libopencv
 $pkg-config --modversion opencv
 3.2.0
 ```
+- boost
+```sh
+✗ locate boost_system
+/usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0
+```
+
 - Error: usleep
 ```sh
 ORB_SLAM2/Examples/Stereo/stereo_kitti.cc:107:13: error: 'usleep' was not declared in this scope
