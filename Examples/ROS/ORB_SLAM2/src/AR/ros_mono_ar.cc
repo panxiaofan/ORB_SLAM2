@@ -33,6 +33,7 @@
 #include"../../../include/System.h"
 
 #include"ViewerAR.h"
+#include<unistd.h>
 
 using namespace std;
 

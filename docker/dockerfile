@@ -49,6 +49,7 @@ RUN apt-get update \
     qt5-default \
     freeglut3-dev  \
     autoconf \
+    mlocate \
     && apt autoremove -y \
     && apt update 
  
