@@ -35,6 +35,11 @@ export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/root/catkin_ws/src/ORB_SLAM2/Exampl
 ./buid_ros.sh
 ```
 
+Test ROS
+```sh
+rosrun ORB_SLAM2 RGBD ./Vocabulary/ORBvoc.txt ./Examples/RGB-D/tum_ros.yaml /camera/depth_registered/image_raw:=/camera/depth/image /camera/rgb/image_raw:=/camera/rgb/image_color
+```
+
 # Manually Install
 ## ubuntu dependency
 ```sh
@@ -61,6 +66,24 @@ E.g.,
 ```sh
 chown -R yubao:yubao *
 ```
+
+# Dataset
+[tum dataset](https://vision.in.tum.de/data/datasets/rgbd-dataset/download)
+```sh
+wget -c https://vision.in.tum.de/rgbd/dataset/freiburg3/rgbd_dataset_freiburg3_walking_static.tgz
+```
+
+# Evaluation
+- Get rgbd_benchmark_tools
+```sh
+svn checkout https://svncvpr.in.tum.de/cvpr-ros-pkg/trunk/rgbd_benchmark/rgbd_benchmark_tools
+```
+- associate rgb and depth
+```sh
+python associate.py PATH_TO_SEQUENCE/rgb.txt PATH_TO_SEQUENCE/depth.txt > associations.txt
+```
+
+
 # BUild Tips
 - Eigen
 ```sh
